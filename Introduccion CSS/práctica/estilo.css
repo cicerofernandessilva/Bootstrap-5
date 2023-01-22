@@ -1,0 +1,24 @@
+/* Mi paleta de colores de mi sitio web
+Primary: #364F6B
+Secundary: #3FC1C9
+light: #F5F5F5
+info: #FC5185 */
+.bg-primary{
+    background-color: #364F6B;
+}
+
+.text-light{
+    color: #F5F5F5;
+}
+
+.text-secundary {
+    color: #3FC1C9;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
