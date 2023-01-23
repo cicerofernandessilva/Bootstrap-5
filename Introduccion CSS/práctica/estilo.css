@@ -7,6 +7,10 @@ info: #FC5185 */
     background-color: #364F6B;
 }
 
+.bg-secundary {
+    background-color: #3FC1C9;
+}
+
 .text-light{
     color: #F5F5F5;
 }
@@ -21,4 +25,16 @@ info: #FC5185 */
 
 .text-right{
     text-align: right;
+}
+
+.width-100{
+    width: 100px;
+}
+
+.width-150 {
+    width: 150px;
+}
+
+.width-200{
+    width: 200px;
 }
