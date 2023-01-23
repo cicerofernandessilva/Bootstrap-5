@@ -1,0 +1,19 @@
+.pt-50 {
+    padding-top: 50px;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.pr-50 {
+    padding-right: 50px;
+}
+
+.pl-50{
+    padding-left: 50px;
+}
+
+.border {
+    border: solid 1px;
+}
