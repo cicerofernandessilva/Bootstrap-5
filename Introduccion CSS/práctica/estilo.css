@@ -11,6 +11,15 @@ info: #FC5185 */
     background-color: #3FC1C9;
 }
 
+.bg-info {
+    background-color: #e9658d9c;
+}
+
+
+.text-priamry{
+    color: #364F6B;
+}
+
 .text-light{
     color: #F5F5F5;
 }
