@@ -5,3 +5,11 @@
 .border-dashed{
     border-style: dashed;
 }
+
+.display-block{
+    display: block;
+}
+
+.display-inline{
+    display: inline;
+}
