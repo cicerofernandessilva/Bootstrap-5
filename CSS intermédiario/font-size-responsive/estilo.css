@@ -1,0 +1,27 @@
+html {
+    font-size: 16px;
+}
+body {
+    font-size: 32px;
+}
+
+.px {
+    background-color: peru;
+    font-size: 3px;
+}
+
+.rem {
+    background-color: blueviolet;
+    font-size: 3rem;
+}
+
+.em {
+    background-color: papayawhip;
+    font-size: 3em;
+}
+
+.rem-em {
+    background-color: aquamarine;
+    padding: 1em;
+    font-size: 3rem;
+}
