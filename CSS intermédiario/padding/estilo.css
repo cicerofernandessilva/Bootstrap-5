@@ -42,5 +42,5 @@
 }
 
 .border {
-    border: solid 1px;
+    border-style: solid;
 }

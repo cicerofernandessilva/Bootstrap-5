@@ -1,0 +1,50 @@
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mtb-50 {
+    margin: 50px 0;
+}
+
+.mtb2-50 {
+    margin: 50px 0 60px;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+
+.ml-50{
+    margin-left: 50px;
+}
+
+.mrl-50{
+    margin: 0 50px;
+}
+
+.mrl2-50{
+    margin: 0 50px 0 60px;
+}
+
+.m-all1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.m-all2 {
+    margin: 50px;
+}
+
+.p-all {
+    padding: 50px;
+}
+
+.border {
+    border-style: solid;
+}
