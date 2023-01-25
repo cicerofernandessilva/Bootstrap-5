@@ -1,3 +1,22 @@
+/* colores
+primary #264653
+secundary #2a9d8f
+danger #e9c46a
+info #f4a261
+light #e76f51
+*/
+
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
