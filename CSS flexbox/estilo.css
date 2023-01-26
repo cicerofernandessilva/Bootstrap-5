@@ -37,3 +37,11 @@
 .direction4 {
     flex-direction: row-reverse;
 }
+
+.w-200 {
+    width: 200px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
