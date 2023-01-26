@@ -69,3 +69,27 @@
 .justify-content-space-evenly{
     justify-content: space-evenly;
 }
+.h-700 {
+    height: 700px;
+}
+
+.h-300 {
+    height: 300px;
+    padding: 50px;
+}
+
+.align-iten-stretch {
+    align-items: stretch;
+}
+
+.align-iten-flex-end {
+    align-items: flex-end;
+}
+
+.align-iten-center {
+    align-items: center;
+}
+
+.align-iten-baseline {
+    align-items: baseline;
+}
