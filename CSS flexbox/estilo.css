@@ -16,5 +16,24 @@
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
+}
 
+.container-flex {
+    display: flex;
+}
+
+.direction1 {
+    flex-direction: column;
+}
+
+.direction2 {
+    flex-direction: column-reverse;
+}
+
+.direction3 {
+    flex-direction: row; /*padrão já aplicado pelo navegador, não precisa ser redigido*/
+}
+
+.direction4 {
+    flex-direction: row-reverse;
 }
