@@ -66,3 +66,28 @@ html {
 .bt-info {
     background-color: #f4a261;
 }
+
+.card {
+    width: 20rem;
+    overflow: hidden;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.card-img {
+    width: 100%;
+}
+
+.card-body {
+    padding: 1em;
+}
+
+.card-body-title {
+    font-size: 1.5rem;
+    margin: 1em 0;
+    font-weight: 900;
+}
+
+.card-body-p {
+    font-weight: 300;
+}
