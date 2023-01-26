@@ -20,3 +20,15 @@ html {
     box-sizing: inherit;
 }
 
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aqua;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
