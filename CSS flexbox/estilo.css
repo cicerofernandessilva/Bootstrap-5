@@ -45,3 +45,27 @@
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-end {
+    justify-content: end;
+}
+
+.justify-content-end {
+    justify-content: start;
+}
+
+.justify-content-space-between{
+    justify-content: space-between;
+}
+
+.justify-content-space-aroud{
+    justify-content: space-around;
+}
+
+.justify-content-space-evenly{
+    justify-content: space-evenly;
+}
