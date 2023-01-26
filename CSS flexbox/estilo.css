@@ -93,3 +93,28 @@
 .align-iten-baseline {
     align-items: baseline;
 }
+
+.align-content-flex-start {
+    align-items: center;
+    align-content: flex-start;
+}
+
+.align-content-flex-end {
+    align-items: center;
+    align-content: flex-end;
+}
+
+.align-content-space-between {
+    align-items: center;
+    align-content: space-between;
+}
+
+.align-content-space-around {
+    align-items: center;
+    align-content: space-around;
+}
+
+.align-content-space-evenly {
+    align-items: center;
+    align-content: space-evenly;
+}
