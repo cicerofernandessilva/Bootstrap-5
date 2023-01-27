@@ -81,6 +81,9 @@
     height: 300px;
     padding: 50px;
 }
+.h-200 {
+    height: 200px;
+}
 
 .align-iten-stretch {
     align-items: stretch;
@@ -159,4 +162,12 @@
 
 .flex-basis-50 {
     flex-basis: 50%;
+}
+
+.flex-1 {
+    flex: 1 0 300px;
+}
+
+.align-self-stert {
+    align-self: flex-start;
 }
