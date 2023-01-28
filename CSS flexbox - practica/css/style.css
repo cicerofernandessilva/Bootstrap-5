@@ -30,7 +30,7 @@ body {
 }
 
 .bg-navbar {
-    background-color: rgba(0, 0, 0, 0.527);
+    background-color: rgba(0, 0, 0, 0.452);
     padding: 1.5em 0;
 }
 
@@ -53,4 +53,23 @@ body {
 
 .navbar-brand img {
     width: 2em;
+}
+
+.navbar-nav {
+    background-color: rgba(0, 0, 0, 0.616);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 0.3em;
+    text-decoration: white;
+    color: white;
+}
+
+.nav-link:hover {
+    background-color: white;
+    color: black;
+    border-radius: 0.5em;
 }
