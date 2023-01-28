@@ -20,6 +20,40 @@ body {
     margin-right: auto;
 }
 
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5em;
+    margin: 0 0.1em;
+    border-radius: 0.5em;
+}
+
+.btn-primary {
+    color: white;
+    background-color: #0F2620;
+}
+
+.btn-secondary {
+    color: white;
+    background-color: #7BA69A;
+}
+
+.btn-danger {
+    color: white;
+    background-color: #A6444C;
+}
+
+.btn-info {
+    color: black;
+    background-color: #DDF2CE;
+}
+
+.btn-darck {
+    color: black;
+    background-color: #D9D2C5;
+}
+
 /*header*/
 .bg-header {
     background-image: url('../assets/img/bg-header-min.jpg');
@@ -47,7 +81,7 @@ body {
     color: white;
     font-size: 2rem;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 1em;
 }
 
@@ -72,4 +106,45 @@ body {
     background-color: white;
     color: black;
     border-radius: 0.5em;
+}
+
+/*main*/
+.main {
+    background-color: rgba(255, 255, 255, 0.575);
+    padding: 0.3em;
+    margin-top: -3em;
+    border-radius: 1em;
+}
+
+.main-title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*Card*/
+
+.card {
+    background-color: #A6444C;
+    color: white;
+    overflow: hidden;
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.card-img {
+    width: 100%;
+}
+
+.card-body {
+    padding: 1em;
+}
+
+.card-body h5 {
+    font-size: 1.5rem;
+    margin: 1em 0;
+    font-weight: 900;
+}
+
+.card-body p {
+    font-weight: 300;
 }
