@@ -64,7 +64,7 @@ body {
 }
 
 .bg-navbar {
-    background-color: rgba(0, 0, 0, 0.452);
+    background-color: rgba(0, 0, 0, 0.336);
     padding: 1.5em 0;
 }
 
@@ -147,4 +147,43 @@ body {
 
 .card-body p {
     font-weight: 300;
+}
+
+/*Nosotros*/
+
+.nosotros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+    background-color: #D9D2C5;
+}
+
+.nosotros-col-img {
+    background-image: url("../assets/img/nosotros-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 21.875em;
+    width: 100%;
+    order: 2;
+}
+
+.nosotros-body {
+    padding: 1em;
+    text-align: center;
+    color: white;
+}
+
+.nosotros-col-text {
+    order: 1;
+}
+
+.nosotros-col-text h2 {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.nosotros-col-text p {
+    font-weight: 200;
 }
