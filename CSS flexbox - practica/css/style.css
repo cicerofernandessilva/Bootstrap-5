@@ -135,6 +135,13 @@ body {
     text-transform: uppercase;
 }
 
+@media (min-width: 768px) {
+    .tienda {
+        display: flex;
+        gap: 1em;
+    }
+}
+
 /*Card*/
 
 .card {
@@ -183,6 +190,12 @@ body {
     order: 2;
 }
 
+@media (min-width: 550px) {
+    .nosotros-col-img {
+        height: 31.25em;
+    }
+}
+
 .nosotros-body {
     padding: 1em;
     text-align: center;
@@ -191,6 +204,21 @@ body {
 
 .nosotros-col-text {
     order: 1;
+}
+
+@media (min-width: 768px) {
+    .nosotros {
+        flex-direction: row;
+    }
+
+    .nosotros-col-text {
+        order: 2;
+        flex-basis: 1 1 0;
+    }
+    .nosotros-col-img {
+        order: 1;
+        flex-basis: 1 1 0;
+    }
 }
 
 .nosotros-col-text h2 {
