@@ -74,6 +74,13 @@ body {
     align-items: center;
 }
 
+@media (min-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
 .navbar-brand {
     display: flex;
     flex-direction: column;
@@ -83,6 +90,13 @@ body {
     text-decoration: none;
     font-weight: 400;
     margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand {
+        flex-direction: row;
+        margin-bottom: 0;
+    }
 }
 
 .navbar-brand img {
@@ -186,4 +200,17 @@ body {
 
 .nosotros-col-text p {
     font-weight: 200;
+}
+
+/*footer*/
+
+.bg-footer {
+    background-color: #D9D2C5;
+    color: white;
+}
+
+.bg-footer p {
+    margin: 0;
+    padding: 1em 0;
+    text-align: center;
 }
