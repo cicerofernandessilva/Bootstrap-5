@@ -14,10 +14,23 @@
         <div class="container">
             <a href="#" class="navbar-brand" id="nombreUsuario">Bchat</a>
             <div>
-                button.
+                <button class="btn btn-primary" id="btnIngreso">Ingresar</button>
+                <button class="btn btn-danger" id="btnCerrarSesion">Cerrar Sesion</button>
             </div>
         </div>
     </nav>
+    <main class="container py-3 containerChat bg-light" id="contenidoWeb">
+        <div class="text-start">
+            <span class="badge bg-warning">warning</span>
+        </div>
+        <div class="text-end">
+            <span class="badge bg-info">yo</span>
+        </div>
+    </main>
+    <form action="" class="container mb-2 fixed-bottom">
+        <input type="text" id="texto" class="form-control my-2" placeholder="...">
+        <button class="btn btn-dark w-100 mt-2" type="submit">Enviar</button>
+    </form>
 
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
