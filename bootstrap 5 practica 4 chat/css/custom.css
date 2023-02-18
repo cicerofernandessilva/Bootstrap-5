@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.containerChat {
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
+}
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
