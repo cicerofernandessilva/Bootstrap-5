@@ -63,7 +63,7 @@ const contenidoChat = user => {
     firebase.firestore().collection('chat').orderBy('fecha')
         .onSnapshot(snapshot => {
             snapshot.docChanges().forEach((change) => {
-                if (change.type === "added") firebase login{
+                if (change.type === "added") {
                     console.log(change.doc.data());
                     console.log(user.uid)
                     console.log(change.doc.data().uid)
