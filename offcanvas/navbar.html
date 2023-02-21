@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offcanvas y Navbar</title>
+
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body style="position: relative;" data-bs-target="#navbarCanvas" data-bs-spy="scroll">
+    <div class="navbar navbar-dark bg-primary fixed-top" id="navbarCanvas">
+        <div class="container">
+            <i class="bi bi-list display-6 text-light" type="button" aria-control="offcanvasNavbar"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"></i>
+        </div>
+    </div>
+    <div class="container">
+        <section id="uno" class="vh-100 pt-5">
+            <h1 class="text-primary display-5 mt-5">Google</h1>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci corporis laboriosam
+                tenetur
+                magnam excepturi. Molestias quas ducimus nobis inventore laboriosam.</p>
+        </section>
+        <section id="dos" class="vh-100 pt-5">
+            <h1 class="text-primary display-5 mt-5">Planos</h1>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci corporis laboriosam
+                tenetur
+                magnam excepturi. Molestias quas ducimus nobis inventore laboriosam.</p>
+        </section>
+        <section id="tres" class="vh-100 pt-5">
+            <h1 class="text-primary display-5 mt-5">Games</h1>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci corporis laboriosam
+                tenetur
+                magnam excepturi. Molestias quas ducimus nobis inventore laboriosam.</p>
+        </section>
+    </div>
+
+    <div class="offcanvas offcanvas-start bg-primary text-light" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title text-center display-3 bolder">Fernandes</h2>
+            <h2 type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-square h3"></i></h2>
+        </div>
+        <div class="offcanvas-body">
+            <p class="text-center lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, libero.</p>
+            <div class="d-grid gap-2">
+                <a href="#uno" class="btn btn-info text-light"><i class="bi bi-google" data-bs-dismiss="offcanvas">
+                        Google</i></a>
+                <a href="#dos" class="btn btn-info text-light"><i class="bi bi-credit-card" data-bs-dismiss="offcanvas">
+                        Planos</i></a>
+                <a href="#tres" class="btn btn-info text-light"><i class="bi bi-controller" data-bs-dismiss="offcanvas">
+                        Games</i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
