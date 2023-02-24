@@ -142,15 +142,38 @@
 
 //for of
 
-let frutas = ["manzana", "papaya", "plantano", "perita", "sandia", "uva", 10];
-console.log(frutas);
-console.log(frutas.length);
+// let frutas = ["manzana", "papaya", "plantano", "perita", "sandia", "uva", 10];
+// console.log(frutas);
+// console.log(frutas.length);
 
-for (let unidade of frutas) {
-  console.log(unidade);
+// for (let unidade of frutas) {
+//   console.log(unidade);
+// }
+
+// let user = "Cícero";
+// for (let letra of user) {
+//   console.log(letra);
+// }
+
+// funcciones
+
+function bemVindo(user) {
+  return "Bienvenido " + user;
 }
 
-let user = "Cícero";
-for (let letra of user) {
-  console.log(letra);
+console.log(bemVindo("Cicero"));
+
+function soma(n1, n2) {
+  console.log(n1 + n2);
 }
+
+soma(10, 20);
+
+function soma2(n3, n4) {
+  return parseInt(n3) + parseInt(n4);
+}
+
+let n3 = prompt("Escribe un número");
+let n4 = prompt("Escribe otro número");
+
+console.log(soma2(n3, n4));
