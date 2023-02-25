@@ -99,6 +99,64 @@
 
 // práctica carrito de frutas
 
+// let escribe = document.getElementById("texto");
+// const carrito = [];
+// const frutas = prompt("🛵 Que frutas 🍉 quieres hoy?");
+
+// carrito.push(frutas);
+
+// while (confirm("🍏Queres comprar alguma otra fruta? 🍍")) {
+//   const frutas = prompt("🛵 Que otra frutas 🍉 quieres hoy?");
+//   carrito.push(frutas);
+// }
+
+// for (const list of carrito) {
+//   console.log(list);
+// }
+// escribe.innerHTML = `Elegiste las siguientes frutas en el carrito:
+// ${carrito}
+// `;
+
+// console.log(carrito);
+
+// funciones declarativas
+
+// function nAlea(min, max) {
+//   return Math.floor(Math.random() * (max - min)) + min;
+// }
+
+// console.log(nAlea(10, 20));
+// // funciones expresadas o anonimas
+
+// const nAzar = function (min, max) {
+//   return Math.floor(Math.random() * (max - min)) + min;
+// };
+
+// console.log(nAzar(100, 201));
+
+// //funciones de flecha
+
+// const flechaAzar = (min, max) => {
+//   return Math.floor(Math.random() * (max - min)) + min;
+// };
+
+// console.log(flechaAzar(100, 201));
+
+// // flecha sem return
+
+// const flechaAzar2 = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+// console.log(flechaAzar2(100, 201));
+
+// // flecha sem return com parametros, para caso não seja digitado
+
+// const flechaAzar3 = (min = 1, max = 150) =>
+//   Math.floor(Math.random() * (max - min)) + min;
+
+// console.log(flechaAzar3(100, 200));
+
+// práctica carrito de frutas con forEach
+
 let escribe = document.getElementById("texto");
 const carrito = [];
 const frutas = prompt("🛵 Que frutas 🍉 quieres hoy?");
@@ -110,11 +168,13 @@ while (confirm("🍏Queres comprar alguma otra fruta? 🍍")) {
   carrito.push(frutas);
 }
 
-for (const list of carrito) {
-  console.log(list);
-}
-escribe.innerHTML = `Elegiste las siguientes frutas en el carrito: 
-${carrito}
-`;
+carrito.forEach((fruta) => console.log(fruta));
 
+carrito.forEach((fruta, index) => {
+  console.log(`${index}: ${fruta}`);
+});
+
+escribe.innerHTML = `Elegiste las siguientes frutas en el carrito:
+ ${carrito}
+ `;
 console.log(carrito);
