@@ -51,38 +51,38 @@ delete gato.manso;
 
 //objetos anidados
 
-const gato2 = {
-  nombre: "Mario",
-  manso: true,
-  duerme: true,
-  enimigos: ["agua", "perro", "veterinario"],
-  color: "preto",
-  edad: 10,
-  otros: {
-    amigos: ["vermelho", "valiente"],
-    comida: {
-      favorita: "salmon",
-      caliente: "polo",
-    },
-  },
-  // uso de metodos de objetos
-  comer: function () {
-    console.log("El gato esta comiendo pez");
-  },
-  comer2(alimento) {
-    console.log(`
-${this.nombre} esta comiendo ${alimento}
-        `);
-  },
-  listEnimigos() {
-    this.enimigos.forEach((item) => console.log("Lista de enimigos : ", item));
-  },
-};
+// const gato2 = {
+//   nombre: "Mario",
+//   manso: true,
+//   duerme: true,
+//   enimigos: ["agua", "perro", "veterinario"],
+//   color: "preto",
+//   edad: 10,
+//   otros: {
+//     amigos: ["vermelho", "valiente"],
+//     comida: {
+//       favorita: "salmon",
+//       caliente: "polo",
+//     },
+//   },
+//   // uso de metodos de objetos
+//   comer: function () {
+//     console.log("El gato esta comiendo pez");
+//   },
+//   comer2(alimento) {
+//     console.log(`
+// ${this.nombre} esta comiendo ${alimento}
+//         `);
+//   },
+//   listEnimigos() {
+//     this.enimigos.forEach((item) => console.log("Lista de enimigos : ", item));
+//   },
+// };
 
-// //forEach no objeto
-gato2.listEnimigos();
+// // //forEach no objeto
+// gato2.listEnimigos();
 
-parafro3.innerHTML = `O nombre de mi gatito si llama ${gato2.nombre}, ele é ${gato2.color} e tiene ${gato2.edad} de edad`;
+// parafro3.innerHTML = `O nombre de mi gatito si llama ${gato2.nombre}, ele é ${gato2.color} e tiene ${gato2.edad} de edad`;
 
 // console.log(gato2);
 // console.log(gato2.nombre);
@@ -106,3 +106,97 @@ parafro3.innerHTML = `O nombre de mi gatito si llama ${gato2.nombre}, ele é ${g
 
 // console.log(Object.values(gato2), "objectos.value");
 // Object.values(gato2).forEach((item) => console.log(item));
+
+// Destructuring
+
+// const gato2 = {
+//   nombre: "Mario",
+//   manso: true,
+//   duerme: true,
+//   enimigos: ["agua", "perro", "veterinario"],
+//   color: "preto",
+//   edad: 10,
+//   otros: {
+//     amigos: ["vermelho", "valiente"],
+//     comida: {
+//       favorita: "salmon",
+//       caliente: "polo",
+//     },
+//   },
+//   // uso de metodos de objetos
+//   comer: function () {
+//     console.log("El gato esta comiendo pez");
+//   },
+//   comer2(alimento) {
+//     console.log(`
+// ${this.nombre} esta comiendo ${alimento}
+//         `);
+//   },
+//   listEnimigos() {
+//     this.enimigos.forEach((item) => console.log("Lista de enimigos : ", item));
+//   },
+// };
+
+// const nombreGato = gato2.nombre;
+// console.log(nombreGato);
+
+// //destruturing con objeto
+
+// const {
+//   nombre = "sin nombre",
+//   edad = "sin edad",
+//   color,
+//   altura = "sin valor",
+// } = gato2; // O "=" define valor defaut, caso não existe o parametro
+
+// console.log(nombre, edad, color, altura);
+
+// //destruturing con array
+
+// const [uno, dos, tres] = gato2.enimigos;
+
+// console.log(uno, dos, tres);
+
+//destruturing de objeto dentro de objeto
+
+// const { favorita, caliente } = gato2.otros.comida;
+// console.log(favorita, caliente);
+
+// ou
+
+// const {
+//   comida: { favorita, caliente },
+//   amigos: [aUno, aDos],
+// } = gato2.otros;
+// console.log(favorita, caliente, aUno, aDos);
+
+//get y set
+
+const gato2 = {
+  nombre: "Mario",
+  manso: true,
+  duerme: true,
+  enimigos: ["agua", "perro", "veterinario"],
+  color: "preto",
+  edad: 10,
+  otros: {
+    amigos: ["vermelho", "valiente"],
+    comida: {
+      favorita: "salmon",
+      caliente: "polo",
+    },
+  },
+  //uso de get y set
+  get modNombre() {
+    return (gato2.nombre = "ignacio");
+  },
+  set nuevoEnimigos(enimigo) {
+    return gato2.enimigos.push(enimigo);
+  },
+};
+
+console.log(gato2.modNombre);
+console.log(gato2);
+
+gato2.nuevoEnimigos = "pepino";
+console.log(gato2);
