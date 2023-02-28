@@ -172,31 +172,60 @@ delete gato.manso;
 
 //get y set
 
-const gato2 = {
-  nombre: "Mario",
-  manso: true,
-  duerme: true,
-  enimigos: ["agua", "perro", "veterinario"],
-  color: "preto",
-  edad: 10,
-  otros: {
-    amigos: ["vermelho", "valiente"],
-    comida: {
-      favorita: "salmon",
-      caliente: "polo",
-    },
-  },
-  //uso de get y set
-  get modNombre() {
-    return (gato2.nombre = "ignacio");
-  },
-  set nuevoEnimigos(enimigo) {
-    return gato2.enimigos.push(enimigo);
-  },
-};
+// const gato2 = {
+//   nombre: "Mario",
+//   manso: true,
+//   duerme: true,
+//   enimigos: ["agua", "perro", "veterinario"],
+//   color: "preto",
+//   edad: 10,
+//   otros: {
+//     amigos: ["vermelho", "valiente"],
+//     comida: {
+//       favorita: "salmon",
+//       caliente: "polo",
+//     },
+//   },
+//   //uso de get y set
+//   get modNombre() {
+//     return (gato2.nombre = "ignacio");
+//   },
+//   set nuevoEnimigos(enimigo) {
+//     return gato2.enimigos.push(enimigo);
+//   },
+// };
 
-console.log(gato2.modNombre);
-console.log(gato2);
+// console.log(gato2.modNombre);
+// console.log(gato2);
 
-gato2.nuevoEnimigos = "pepino";
-console.log(gato2);
+// gato2.nuevoEnimigos = "pepino";
+// console.log(gato2);
+
+//por valor y por referencia
+
+//por valor
+
+let a = "hola";
+let b = a;
+
+a = "Cicero";
+
+console.log(b);
+
+//por referencia array
+
+let c = ["hola"];
+let d = c;
+
+c.push("Cicero");
+
+console.log(d);
+
+//por referencia objeto
+
+let e = { salud: "hola" };
+let f = e;
+
+e.salud = "Cicero";
+
+console.log(f);
