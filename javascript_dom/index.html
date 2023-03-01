@@ -5,11 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Javascript DOM parte 1</title>
+    <script src="app.js"></script>
+    <!-- <script src="app.js" defer></script> atributo possui função similar ao DOMContentLoaded mas ainda não é totalmente suportado -->
   </head>
   <body>
-    <h1>Javascript DOM parte 1</h1>
+    <h1 id="javascript">Javascript DOM parte 1</h1>
     <p id="textoWeb">Texto para terminal</p>
+    <p id="textoSelector">Texto para terminal - querySelector id</p>
+    <p class="classSelector">Texto para terminal - querySelector class</p>
 
-    <script src="app.js"></script>
+    <button class="btn">Cambiar texto</button>
+    <button class="btn2">Cambiar texto2</button>
+
+    <div class="container">
+      <div class="text-danger">
+        Lorem ipsum dolor sit.- querySelectorAll class
+      </div>
+      <div class="text-danger">
+        Lorem ipsum dolor sit.- querySelectorAll class
+      </div>
+      <div class="text-danger">
+        Lorem ipsum dolor sit.- querySelectorAll class
+      </div>
+      <div class="text-danger">
+        Lorem ipsum dolor sit.- querySelectorAll class
+      </div>
+    </div>
+    <p class="text-danger">Lorem ipsum dolor sit. - querySelectorAll class</p>
+
+    <!-- <script src="app.js"></script> -->
   </body>
 </html>
