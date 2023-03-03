@@ -48,4 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
     h1.style.padding = "2rem";
     h1.style.margin = "2rem";
   });
+
+  const lista = document.querySelector("#lista");
+  const paises = ["Brasil", "Japão", "Bolivia", "Espagña"];
+
+  paises.forEach((pais) => {
+    const li = document.createElement("li");
+    li.textContent = pais;
+    lista.appendChild(li);
+  });
+
+  const p = document.createElement("p");
+  p.textContent = "Elemento creado en JS";
+  lista.appendChild(p);
 });
