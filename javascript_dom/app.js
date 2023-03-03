@@ -51,12 +51,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lista = document.querySelector("#lista");
   const paises = ["Brasil", "Japão", "Bolivia", "Espagña"];
+  const nUser = ["cicero", "ignacio", "velente"];
+  const fragment = document.createDocumentFragment();
+
+  //con reflow
+  // paises.forEach((pais) => {
+  //   const li = document.createElement("li");
+  //   li.textContent = pais;
+  //   lista.appendChild(li);
+  // });
+  // nUser.forEach((pais) => {
+  //   lista.innerHTML += `<li> ${pais} </li> `;
+  // });
+
+  // sin reflow
+  // paises.forEach((pais) => {
+  //   const li = document.createElement("li");
+  //   li.textContent = pais;
+  //   fragment.appendChild(li);
+  // });
+
+  // lista.appendChild(fragment); // forma mais segura de se fazer
+
+  // //insertBefore
 
   paises.forEach((pais) => {
-    const li = document.createElement("li");
-    li.textContent = pais;
-    lista.appendChild(li);
+    const newNode = document.createElement("li");
+    newNode.textContent = pais;
+    // Nos devuelve el primer elemento
+    const referenceNode = fragment.firstChild;
+    // Si "referenceNode" es null, el newNode se insertará al final de la lista.
+    fragment.insertBefore(newNode, referenceNode);
   });
+
+  lista.appendChild(fragment); // forma mais segura de se fazer
 
   const p = document.createElement("p");
   p.textContent = "Elemento creado en JS";
