@@ -139,9 +139,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const liTemplate = document.querySelector("#liTemplate");
 
+  const eventoClick = (e) => {
+    console.log("Me deste click", e.target);
+  };
+
   paises.forEach((pais) => {
-    const clone = liTemplate.content.cloneNode(true);
+    const clone = liTemplate.content.firstElementChild.cloneNode(true); // sempre que adicionar eventos é necessário usar o "firstElementChild"
     clone.querySelector("span").textContent = pais;
+
+    clone.addEventListener("click", eventoClick);
 
     fragment.appendChild(clone);
   });
