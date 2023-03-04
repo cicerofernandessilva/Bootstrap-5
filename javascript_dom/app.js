@@ -75,18 +75,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // //insertBefore
 
-  paises.forEach((pais) => {
-    const newNode = document.createElement("li");
-    newNode.textContent = pais;
-    // Nos devuelve el primer elemento
-    const referenceNode = fragment.firstChild;
-    // Si "referenceNode" es null, el newNode se insertará al final de la lista.
-    fragment.insertBefore(newNode, referenceNode);
-  });
+  // paises.forEach((pais) => {
+  //   const newNode = document.createElement("li");
+  //   newNode.textContent = pais;
+  //   // Nos devuelve el primer elemento
+  //   const referenceNode = fragment.firstChild;
+  //   // Si "referenceNode" es null, el newNode se insertará al final de la lista.
+  //   fragment.insertBefore(newNode, referenceNode);
+  // });
 
-  lista.appendChild(fragment); // forma mais segura de se fazer
+  // lista.appendChild(fragment); // forma mais segura de se fazer
 
   const p = document.createElement("p");
   p.textContent = "Elemento creado en JS";
   lista.appendChild(p);
+
+  //createElement modo 1
+
+  // paises.forEach((pais) => {
+  //   const newNode = document.createElement("li");
+  //   newNode.innerHTML = `<li class="list"><b>Pais: </b><span class="text-primary">${pais};</span></li>`;
+  //   // Nos devuelve el primer elemento
+  //   const referenceNode = fragment.firstChild;
+  //   // Si "referenceNode" es null, el newNode se insertará al final de la lista.
+  //   fragment.insertBefore(newNode, referenceNode);
+  // });
+
+  // lista.appendChild(fragment); // forma mais segura de se fazer
+
+  //createElement modo 2
+  // paises.forEach((pais) => {
+  //   const li = document.createElement("li");
+  //   li.className = "list";
+
+  //   const b = document.createElement("b");
+  //   b.textContent = "Pais : ";
+
+  //   const span = document.createElement("span");
+  //   span.className = "text-primary";
+  //   span.textContent = pais;
+
+  //   li.appendChild(b);
+  //   li.appendChild(span);
+
+  //   fragment.appendChild(li);
+  // });
+
+  // lista.appendChild(fragment); // forma mais segura de se fazer
+
+  //createElement modo 3
+  // let tamplete = "";
+  // paises.forEach((pais) => {
+  //   tamplete += `
+  //   <li class="list">
+  //       <b>Pais: </b> <span class="text-primary">${pais}</span>
+  //     </li>
+  //   `;
+  // });
+
+  // lista.innerHTML = tamplete; // forma mais segura de se fazer
+
+  // Uso do template
+
+  const liTemplate = document.querySelector("#liTemplate");
+
+  paises.forEach((pais) => {
+    const clone = liTemplate.content.cloneNode(true);
+    clone.querySelector("span").textContent = pais;
+
+    fragment.appendChild(clone);
+  });
+
+  lista.appendChild(fragment); // forma mais segura de se fazer
+
+  // <li class="list">
+  //   <b>Pais: </b> <span class="text-primary">aqui vá ela pais</span>
+  // </li>;
 });
