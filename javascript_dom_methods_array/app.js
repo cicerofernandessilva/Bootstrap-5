@@ -87,3 +87,23 @@ console.log("Concat, parametros array1.concat(array2)", array3);
 const arraySpread = [...array1, ...array2];
 
 console.log("arraySpread, parametros [...array1, ...array2]", arraySpread);
+
+// reduce
+
+const numerosArray = [1, 2, 3, 4, 5, 6];
+
+const reduce = numerosArray.reduce((acc, valorActual) => acc + valorActual);
+console.log("reduce - soma de numeros do array", reduce);
+
+//falt cria novo array com, concatenação de array com elementos aninhados
+
+const arrayAni = [1, 2, 3, [4, 5, [6, 7]]];
+
+const flat = arrayAni.flat(3);
+
+console.log("flat ", flat);
+const arrayAni2 = [1, 2, 3, 4, 5, [6, 7], 9, 10];
+
+const flat2 = arrayAni2.flat(2);
+
+console.log("flat 2 ", flat2);
