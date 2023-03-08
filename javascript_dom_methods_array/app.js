@@ -66,3 +66,24 @@ const findIndex = user.findIndex((user) => user.uid === 3);
 console.log("findIndex condição user.uid === 3", findIndex);
 const findIndex2 = user.findIndex((user) => user.uid > 3);
 console.log("findIndex condição user.uid > 3", findIndex2);
+
+//uso de slice, crear nuevo array con parte de uno array
+
+const array1 = ["ignacio", "cicero", "sullyan", "simone"];
+//                   0        1           2        3
+const array2 = ["Maria", "Joaquim", "Sofia", "João"];
+
+const slice = array1.slice(1, 3);
+console.log("slice de 1 e 2, parametros array1.slice(1, 3)", slice);
+
+// uso de concat, crar nuevo array con dos arrays
+
+const array3 = array1.concat(array2);
+
+console.log("Concat, parametros array1.concat(array2)", array3);
+
+// uso de spread, crar nuevo array con dos arrays
+
+const arraySpread = [...array1, ...array2];
+
+console.log("arraySpread, parametros [...array1, ...array2]", arraySpread);
