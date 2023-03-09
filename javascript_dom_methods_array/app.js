@@ -107,3 +107,17 @@ const arrayAni2 = [1, 2, 3, 4, 5, [6, 7], 9, 10];
 const flat2 = arrayAni2.flat(2);
 
 console.log("flat 2 ", flat2);
+
+// split, transforma string en vários elementos de un nuevo array
+
+const meses = "Jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez";
+
+const split = meses.split(",");
+
+console.log("Split ", split);
+
+// join, transforma array en string
+
+const join = split.join(",");
+
+console.log("join ", join);
