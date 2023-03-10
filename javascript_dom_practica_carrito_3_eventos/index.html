@@ -12,7 +12,7 @@
     />
   </head>
   <body>
-    <!-- <main class="container bg-light mt-5">
+    <main class="container bg-light mt-5">
       <h1 class="text-primary text-center h1 pt-5">
         Javascript DOM practica carrito con event
       </h1>
@@ -21,7 +21,12 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Fresa 🍓</h5>
-              <button class="btn btn-outline-primary" data-fruta="Fresa 🍓">
+              <p class="lead">$ 15,00</p>
+              <button
+                class="btn btn-outline-primary"
+                data-fruta="Fresa 🍓"
+                data-precio="15"
+              >
                 Agregar
               </button>
             </div>
@@ -31,7 +36,12 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Banana 🍌</h5>
-              <button class="btn btn-outline-primary" data-fruta="Banana 🍌">
+              <p class="lead">$ 5,00</p>
+              <button
+                class="btn btn-outline-primary"
+                data-fruta="Banana 🍌"
+                data-precio="5"
+              >
                 Agregar
               </button>
             </div>
@@ -41,7 +51,12 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Manzana 🍏</h5>
-              <button class="btn btn-outline-primary" data-fruta="Manzana 🍏">
+              <p class="lead">$ 10,00</p>
+              <button
+                class="btn btn-outline-primary"
+                data-fruta="Manzana 🍏"
+                data-precio="10"
+              >
                 Agregar
               </button>
             </div>
@@ -51,7 +66,12 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Sandía 🍉</h5>
-              <button class="btn btn-outline-primary" data-fruta="Sandía 🍉">
+              <p class="lead">$ 3,00</p>
+              <button
+                class="btn btn-outline-primary"
+                data-fruta="Sandía 🍉"
+                data-precio="3"
+              >
                 Agregar
               </button>
             </div>
@@ -61,8 +81,39 @@
     </main>
     <section class="container mt-3">
       <h5 class="text-primary h1 text-center">Carrito 🛒</h5>
-      <ul id="carrito" class="list-group"></ul>
-    </section> -->
+      <ul id="carrito" class="list-group">
+        <li class="bg-secondary list-group-item">
+          <span class="bg-primary rounded-pill badge align-middle mt-1"
+            >12</span
+          >
+          <span class="lead align-middle text-light"> Frutille</span>
+        </li>
+        <li
+          class="bg-light list-group-item d-flex justify-content-between align-item-center"
+        >
+          <div>
+            <p class="lead mb-0">Total $<span>1500</span></p>
+          </div>
+          <div>
+            <button class="btn btn-outline-danger">Quitar</button>
+            <button class="btn btn-outline-success">Agregar</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="container mt-3" id="footer">
+      <template id="footerTemplate">
+        <div class="card">
+          <div
+            class="card-body d-flex justify-content-between align-item-center"
+          >
+            <p class="lead mb-0">Total $<span>1500</span></p>
+            <button class="btn btn-outline-primary">Finalizar Compra</button>
+          </div>
+        </div>
+      </template>
+    </footer>
     <template id="template">
       <li
         class="bg-light list-group-item d-flex justify-content-between align-items-center"
