@@ -92,3 +92,32 @@ form.addEventListener("submit", (e) => {
 const ancla = document.querySelector("a");
 
 ancla.addEventListener("click", (e) => console.log("Me deste click!"));
+
+// Delegacion de eventos
+
+//manipulando eventos del DOM com elemento padres
+
+const padre = document.querySelector(".container");
+// console.log("div container", padre);
+
+padre.addEventListener("click", (e) => {
+  // console.log(e.target);
+  // console.log(e.target.id);
+  if (e.target.id === "padre") {
+    console.log("Diste click al Padre");
+  }
+  if (e.target.id === "hijo") {
+    console.log("Diste click al Hijo");
+  }
+  if (e.target.id === "nieto") {
+    console.log("Diste click al Nieto");
+  }
+
+  if (e.target.matches(".border-secondary")) {
+    console.log("Diste click al Hijo - uso do matches()");
+  }
+
+  if (e.target.dataset.div === "divNieto") {
+    console.log("Diste click al Nieto", e.target.dataset.div);
+  }
+});
