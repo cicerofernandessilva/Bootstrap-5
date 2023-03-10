@@ -50,9 +50,9 @@
 
 //teste de eventos
 
-const padre = document.querySelector(".border-primary");
-const hijo = document.querySelector(".border-secondary");
-const nieto = document.querySelector(".border-danger");
+// const padre = document.querySelector(".border-primary");
+// const hijo = document.querySelector(".border-secondary");
+// const nieto = document.querySelector(".border-danger");
 // console.log(padre);
 // console.log(hijo);
 // console.log(nieto);
@@ -63,7 +63,7 @@ const nieto = document.querySelector(".border-danger");
 
 // con forEach
 
-const all = document.querySelectorAll(".border");
+// const all = document.querySelectorAll(".border");
 
 // all.forEach((propagacion) => {
 //   propagacion.addEventListener("click", () => console.log("Me deste click"));
@@ -71,9 +71,24 @@ const all = document.querySelectorAll(".border");
 
 //sem propagação do evento
 
-all.forEach((propagacion) => {
-  propagacion.addEventListener("click", (e) => {
-    e.stopPropagation();
-    console.log("Me deste click");
-  });
+// all.forEach((propagacion) => {
+//   propagacion.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log("Me deste click");
+//   });
+// });
+
+// manipulando formulario
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("Me deste click");
 });
+
+//con ancla
+
+const ancla = document.querySelector("a");
+
+ancla.addEventListener("click", (e) => console.log("Me deste click!"));
