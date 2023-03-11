@@ -2,6 +2,8 @@
 
 const carrito = document.querySelector("#carrito");
 const template = document.querySelector("#template");
+const templateFooter = document.querySelector("#footerTemplate");
+const footer = document.querySelector("#footer");
 const btnAgregar = document.querySelectorAll(".card .btn");
 const fragment = document.createDocumentFragment();
 
@@ -13,6 +15,15 @@ const fragment = document.createDocumentFragment();
 
 const carritoObj = [];
 
+document.addEventListener("click", (e) => {
+  // console.log(e.target);
+  // console.log(e.target.matches(".card .btn-primary"));
+  if (e.target.matches(".card .btn-outline-primary")) {
+    // console.log("Ejecutar agregar al carrito");
+    agrCarrito(e);
+  }
+});
+
 const agrCarrito = (e) => {
   //   console.log(e.target);
   console.log(e.target.dataset.fruta);
@@ -20,6 +31,7 @@ const agrCarrito = (e) => {
     titulo: e.target.dataset.fruta,
     id: e.target.dataset.fruta,
     cantidad: 1,
+    precio: parseInt(e.target.dataset.precio),
   };
 
   const indice = carritoObj.findIndex((item) => item.id === producto.id);
@@ -29,10 +41,11 @@ const agrCarrito = (e) => {
     carritoObj.push(producto);
   } else {
     carritoObj[indice].cantidad++;
+    carritoObj[indice].precio = carritoObj[indice].cantidad * producto.precio;
   }
-  // console.log(carritoObj);
+  console.log(carritoObj);
 
-  pintarCarrito(carritoObj);
+  // pintarCarrito(carritoObj);
 };
 
 const pintarCarrito = (array) => {
@@ -46,4 +59,3 @@ const pintarCarrito = (array) => {
   });
   carrito.appendChild(fragment);
 };
-btnAgregar.forEach((btn) => btn.addEventListener("click", agrCarrito));
