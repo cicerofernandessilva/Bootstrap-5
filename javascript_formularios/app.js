@@ -68,3 +68,22 @@ formulario.addEventListener("submit", (e) => {
   //   console.log("Formulário enviado!");
   pintarSuccess();
 });
+
+//formData
+
+// formulario.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   console.log("funciona");
+
+//   const inputs = new FormData(formulario);
+//   console.log(inputs.get("userName"));
+//   console.log(inputs.get("userEmail"));
+
+//   for (let campo of inputs.values()) {
+//     console.log(campo);
+//   }
+
+//   for (let campo of inputs.entries()) {
+//     console.log(campo);
+//   }
+// });
