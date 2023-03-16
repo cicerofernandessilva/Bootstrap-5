@@ -78,17 +78,106 @@ const posts = [
 
 //uso de promises
 
+// const findPosts = (id) => {
+//   const post = posts.find((item) => item.id === id);
+//   return new Promise((resolve, reject) => {
+//     if (post) {
+//       resolve(post);
+//     } else {
+//       reject("No se encontro el post con id " + id);
+//     }
+//   });
+// };
+
+// findPosts(0)
+//   .then((post) => console.log(post))
+//   .catch((e) => console.log(e));
+
+//promises aninhadas
+
+// const findPosts = (id) => {
+//   const post = posts.find((item) => item.id === id);
+//   return new Promise((resolve, reject) => {
+//     if (post) {
+//       resolve(post);
+//     } else {
+//       reject("No se encontro el post con id " + id);
+//     }
+//   });
+// };
+
+// findPosts(1)
+//   .then((post) => {
+//     console.log(post);
+//     return findPosts(2);
+//   })
+//   .then((post) => {
+//     console.log(post);
+//     return findPosts(3);
+//   })
+//   .then((post) => {
+//     console.log(post);
+//     return findPosts(4);
+//   })
+//   .catch((e) => console.log(e));
+
+//async await
+
 const findPosts = (id) => {
-  const post = posts.find((item) => item.id === id);
   return new Promise((resolve, reject) => {
-    if (post) {
-      resolve(post);
-    } else {
-      reject("No se encontro el post con id " + id);
-    }
+    setTimeout(() => {
+      const post = posts.find((item) => item.id === id);
+      if (post) {
+        resolve(post);
+      } else {
+        reject("No se encontro el post con id " + id);
+      }
+    }, 2000);
   });
 };
 
-findPosts(0)
-  .then((post) => console.log(post))
-  .catch((e) => console.log(e));
+// retorno sem async await
+
+// findPosts(1)
+//   .then((post) => {
+//     console.log(post);
+//     return findPosts(2);
+//   })
+//   .then((post) => console.log(post))
+//   .catch((e) => console.log(e));
+
+// com async await
+
+const buscar = async (id) => {
+  //sem tratativa de erros
+
+  // const post = await findPosts(id);
+  // console.log(post);
+
+  //com tratativa de erros
+  // try {
+  //   const post = await findPosts(id);
+  //   console.log(post);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
+  // uso de promise.all
+  try {
+    const ArrayPost = await Promise.all([findPosts(1), findPosts(2)]); //as duas promises dever ser verdadeiras neste caso
+    // const ArrayPost = await Promise.all([findPosts(4), findPosts(2)]); //um promise falsa devolve o catch quando se usa Promise.all
+    console.log(ArrayPost);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log("Código Finalizado");
+  }
+};
+
+// buscar(1);
+// buscar(4);
+
+//uso do try e catch
+buscar();
+
+console.log("Fin do código!");
