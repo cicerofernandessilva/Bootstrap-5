@@ -127,16 +127,77 @@ const cicero = new Persona("Cícero");
 
 // polimorfismo ou heredar
 
+// class Estudante extends Persona {
+//   constructor(nombre, edad = [], notas = []) {
+//     super(nombre);
+//     this.edad = edad;
+//     this.notas = notas;
+//   }
+
+//   get getEdad() {
+//     return this.edad;
+//   }
+
+//   set setNotas(nota) {
+//     this.notas.push(nota);
+//   }
+
+//   get getNotas() {
+//     return this.notas;
+//   }
+
+//   saludar() {
+//     return `${this.nombre} dice helo, bienvenido!`;
+//   }
+// }
+
+// const ignacio = new Estudante("Ignacio", 34);
+
+// // herda elementos do pai e sobre escreve os iguais
+// console.log(ignacio.getNombre);
+// console.log(ignacio.edad);
+// console.log(ignacio.saludar());
+// console.log(ignacio);
+
+// ignacio.setNotas = { matematica: 7 };
+// ignacio.setNotas = 8;
+// ignacio.setNotas = 5;
+// ignacio.setNotas = 9;
+
+// console.log(ignacio.getNotas);
+
+// private class, uso de # para identificar
+
 class Estudante extends Persona {
+  #notas = [];
+
+  set setNotas(nota) {
+    this.#notas.push(nota);
+  }
+
+  get getNotas() {
+    return this.#notas;
+  }
+
   saludar() {
     return `${this.nombre} dice helo, bienvenido!`;
   }
 }
 
-const ignacio = new Estudante("Ignacio");
+const ignacio = new Estudante("Ignacio", 34);
 
 // herda elementos do pai e sobre escreve os iguais
 console.log(ignacio.getNombre);
+console.log(ignacio.edad);
 console.log(ignacio.saludar());
+console.log(ignacio);
 
-parafro.textContent = ` ${ignacio.getNombre}`;
+ignacio.setNotas = { matematica: 7 };
+ignacio.setNotas = 8;
+ignacio.setNotas = 5;
+ignacio.setNotas = 9;
+
+console.log(ignacio.getNotas);
+console.log(`Essa #notas retorna um erro quando chamada diretamente`);
+
+parafro.textContent = `Meu nome é ${ignacio.getNombre} e tenho  ${ignacio.getEdad} anos`;
