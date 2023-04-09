@@ -5,6 +5,7 @@ const cardEstudiantes = document.querySelector("#cardEstudiantes");
 const cardProfesores = document.querySelector("#cardProfesores");
 const templateEst = document.querySelector("#templateEstudiante").content;
 const templateProf = document.querySelector("#templateProfesor").content;
+const alert = document.querySelector(".alert");
 
 const estudiantes = [];
 const profesores = [];
@@ -95,7 +96,7 @@ class Estudiante extends Persona {
     clone.querySelector(".lead").textContent = this.edad;
     // console.log(this.#estado);
     if (this.#estado) {
-      console.log("feito");
+      // console.log("feito");
       // console.log(this.#estado);
       clone.querySelector(".badge").className = "badge bg-success"; // agregar classes
       clone.querySelector(".btn-success").disabled = true;
@@ -103,7 +104,7 @@ class Estudiante extends Persona {
       // clone.querySelector("span.badge").textContent = "Aprobado";
       // console.log("true");
     } else {
-      console.log("não feito");
+      // console.log("não feito");
       clone.querySelector(".badge").className = "badge bg-danger"; // agregar classes
       clone.querySelector(".btn-danger").disabled = true; // destivar butones
       clone.querySelector(".btn-success").disabled = false;
@@ -118,7 +119,7 @@ class Estudiante extends Persona {
     clone.querySelector(".btn-success").dataset.uid = this.uid;
     clone.querySelector(".btn-danger").dataset.uid = this.uid;
 
-    console.log(this.#estado);
+    // console.log(this.#estado);
 
     return clone;
   }
@@ -137,12 +138,18 @@ class Profesor extends Persona {
 
 formulario.addEventListener("submit", (e) => {
   e.preventDefault(); //desativa envio por padrão do navegador
+  alert.classList.add("d-none");
   const datos = new FormData(formulario);
   //   console.log(datos);
   //   console.log([...datos.values()]);
   //   datos.forEach((item) => console.log(item));
   const [nombre, edad, opcion] = [...datos.values()];
   //   console.log(nombre, edad, nota, option);
+  if (!nombre.trim() || !edad.trim() || !opcion.trim()) {
+    console.log("algun dato en blanco");
+    alert.classList.remove("d-none");
+    return;
+  }
   if (opcion === "Estudiante") {
     const estudiante = new Estudiante(nombre, edad);
     // console.log(estudiante);
