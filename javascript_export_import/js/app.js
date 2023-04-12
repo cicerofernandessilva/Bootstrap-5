@@ -64,7 +64,7 @@
 const alert = document.querySelector("#alert");
 const formulario = document.querySelector("#formulario");
 const pintar = document.querySelector("#pintar");
-const template = document.querySelector("#template");
+const template = document.querySelector("#template").content;
 
 // console.log(alert);
 // console.log(formulario);
@@ -85,4 +85,33 @@ formulario.addEventListener("submit", (e) => {
     alert.classList.remove("d-none");
     return;
   }
+
+  agregarTodo(todo);
+  // console.log(todos);
+  pintarTodos();
 });
+
+const agregarTodo = (todo) => {
+  const objetoTodo = {
+    nombre: todo,
+    id: `${Date.now()}`,
+  };
+  todos.push(objetoTodo);
+  // console.log(todos);
+};
+
+const pintarTodos = () => {
+  pintar.textContent = "";
+  const fragment = document.createDocumentFragment();
+  // console.log(todos);
+  todos.forEach((item) => {
+    const clone = template.cloneNode(true);
+    // console.log(clone);
+    // console.log(item.nombre);
+    // console.log(todos);
+    clone.querySelector("p").textContent = item.nombre;
+
+    fragment.appendChild(clone);
+  });
+  pintar.appendChild(fragment);
+};
