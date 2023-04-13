@@ -71,7 +71,45 @@ const template = document.querySelector("#template").content;
 // console.log(pintar);
 // console.log(template);
 
-const todos = [];
+let todos = [];
+
+const agregarTodo = (todo) => {
+  const objetoTodo = {
+    nombre: todo,
+    id: `${Date.now()}`,
+  };
+  todos.push(objetoTodo);
+  // console.log(todos);
+};
+
+const pintarTodos = () => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+
+  pintar.textContent = "";
+  const fragment = document.createDocumentFragment();
+  // console.log(todos);
+  todos.forEach((item) => {
+    const clone = template.cloneNode(true);
+    // console.log(clone);
+    // console.log(item.nombre);
+    // console.log(todos);
+    clone.querySelector("p").textContent = item.nombre;
+    clone.querySelector(".btn").dataset.id = item.id;
+
+    fragment.appendChild(clone);
+  });
+  pintar.appendChild(fragment);
+};
+
+document.addEventListener("click", (e) => {
+  // console.log(e.target.dataset.id);
+  // console.log(e.target.matches(".btn-danger"));
+  if (e.target.matches(".btn-danger")) {
+    // console.log("Diste click para borrar!");
+    todos = todos.filter((item) => item.id !== e.target.dataset.id);
+    pintarTodos();
+  }
+});
 
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -91,27 +129,9 @@ formulario.addEventListener("submit", (e) => {
   pintarTodos();
 });
 
-const agregarTodo = (todo) => {
-  const objetoTodo = {
-    nombre: todo,
-    id: `${Date.now()}`,
-  };
-  todos.push(objetoTodo);
-  // console.log(todos);
-};
-
-const pintarTodos = () => {
-  pintar.textContent = "";
-  const fragment = document.createDocumentFragment();
-  // console.log(todos);
-  todos.forEach((item) => {
-    const clone = template.cloneNode(true);
-    // console.log(clone);
-    // console.log(item.nombre);
-    // console.log(todos);
-    clone.querySelector("p").textContent = item.nombre;
-
-    fragment.appendChild(clone);
-  });
-  pintar.appendChild(fragment);
-};
+document.addEventListener("DOMContentLoaded", (e) => {
+  if (localStorage.getItem("todos")) {
+    todos = JSON.parse(localStorage.getItem("todos"));
+    pintarTodos();
+  }
+});
