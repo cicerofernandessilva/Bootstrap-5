@@ -1,0 +1,11 @@
+{
+  "name": "node_js_mi_premera_app",
+  "version": "1.0.0",
+  "description": "mi primera app node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cicero",
+  "license": "ISC"
+}
