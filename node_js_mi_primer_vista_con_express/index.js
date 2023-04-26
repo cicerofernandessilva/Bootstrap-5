@@ -15,8 +15,23 @@ const express = require("express");
 const app = express();
 const port = 5000;
 
+//middleware
+app.use(express.static("public"));
+
+app.get("/formulario", (req, res) => {
+  res.send("Formulário enviado!...");
+});
+
 app.get("/", (req, res) => {
   res.send("Clicaste na pagina de inicio! 🚀🚀");
+});
+
+app.get("/cicero", (req, res) => {
+  res.send("Visitaste la pagina cicero! 🚀🚀");
+});
+
+app.get("/post", (req, res) => {
+  res.send("Usaste el metodo POST! 🚀🚀");
 });
 
 app.listen(port, () => {
