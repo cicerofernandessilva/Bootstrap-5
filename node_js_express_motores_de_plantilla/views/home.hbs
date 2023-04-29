@@ -1,1 +1,26 @@
 <h1>Motores de Plantilla😍</h1>
+
+{{#each urls}}
+  {{> Card item=this}}
+  {{!-- <article class="card mb-2 text-primary h2">
+  <div class="card-body">
+    <p>Links</p>
+    <p>Full: {{item.origin}}</p>
+    <p class="lead">Short: {{item.shortURL}}</p>
+    <a href="" class="btn btn-danger">Eliminar</a>
+    <a href="" class="btn btn-warning">Editar</a>
+    <a href="" class="btn btn-info">Copiar</a>
+  </div>
+</article> --}}
+
+{{/each}}
+
+{{! <article class="card mb-2">
+  <div class="card-body">
+    <p>www.google.com</p>
+    <p>djaldksoakdpoa</p>
+    <a href="" class="btn btn-danger">Eliminar</a>
+    <a href="" class="btn btn-warning">Editar</a>
+    <a href="" class="btn btn-info">Copiar</a>
+  </div>
+</article> }}
