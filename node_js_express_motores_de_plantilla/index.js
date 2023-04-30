@@ -32,5 +32,10 @@ app.set("views", "./views");
 app.use(express.static(__dirname + "/public"));
 app.use("/", require("./routes/home"));
 app.use("/auth", require("./routes/auth"));
+require("dotenv").config();
+require("./database/db");
 
-app.listen(5000, () => console.log("Servidor andando👌!"));
+const PORT = process.env.PORT || 5000;
+
+// app.listen(5000, () => console.log("Servidor andando👌!"));
+app.listen(PORT, () => console.log("Servidor andando👌!" + PORT));
