@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const { nanoid } = require("nanoid");
 const { Schema } = mongoose;
+// const { nanoid } = require("nanoid"); inserido diretamente no homecontroller
+//import { nanoid } from "nanoid"; // erro, tive que fazer um downgrade da versão do nanoid
 
 const urlSchema = new Schema({
-  origen: {
+  origin: {
     type: String,
     unique: true,
     require: true,
@@ -12,7 +13,7 @@ const urlSchema = new Schema({
     type: String,
     unique: true,
     require: true,
-    default: nanoid(5),
+    // default: nanoid(5), inserido diretamento no homecontrollers
   },
 });
 

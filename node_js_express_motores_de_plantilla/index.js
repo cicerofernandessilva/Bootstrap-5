@@ -29,6 +29,7 @@ app.set("views", "./views");
 //   res.render("login");
 // });
 
+app.use(express.urlencoded({ extended: true })); //leer body enviado via post
 app.use(express.static(__dirname + "/public"));
 app.use("/", require("./routes/home"));
 app.use("/auth", require("./routes/auth"));
