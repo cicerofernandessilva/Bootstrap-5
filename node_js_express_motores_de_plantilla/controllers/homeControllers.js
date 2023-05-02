@@ -2,15 +2,13 @@ const Url = require("../models/URL");
 const { nanoid } = require("nanoid");
 
 const leerUrls = async (req, res) => {
-  const urls = [
-    { origin: "www.google.com/cicero1", shortURL: "sdfdfsdf1" },
-    { origin: "www.google.com/cicero2", shortURL: "sdfdfsdf2" },
-    { origin: "www.google.com/cicero3", shortURL: "sdfdfsdf3" },
-    { origin: "www.google.com/cicero4", shortURL: "sdfdfsdf4" },
-    { origin: "www.google.com/cicero5", shortURL: "sdfdfsdf5" },
-    { origin: "www.google.com/cicero6", shortURL: "sdfdfsdf6" },
-  ];
-  res.render("home", { urls: urls });
+  try {
+    const urls = await Url.find().lean();
+    res.render("home", { urls: urls });
+  } catch (error) {
+    console.log(error);
+    res.send("Algo falló😥!");
+  }
 };
 
 const agregarUrl = async (req, res) => {
@@ -29,4 +27,59 @@ const agregarUrl = async (req, res) => {
   }
 };
 
-module.exports = { leerUrls, agregarUrl };
+const eliminarUrl = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Url.findByIdAndDelete(id);
+    res.redirect("/");
+  } catch (error) {
+    console.log(erro);
+    res.send("Algo falló 😥!");
+  }
+};
+
+const editarUrl = async (req, res) => {
+  const { origin } = req.body;
+  const { id } = req.params;
+  try {
+    await Url.findByIdAndUpdate(id, { origin: origin });
+    res.redirect("/");
+  } catch (error) {
+    console.log(erro);
+    res.send("Algo falló 😥!");
+  }
+};
+
+const editarUrlForm = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const url = await Url.findById(id).lean();
+    console.log(url);
+    res.render("home", { url });
+  } catch (error) {
+    console.log(erro);
+    res.send("Algo falló 😥!");
+  }
+};
+
+const redirectShort = async (req, res) => {
+  const { shortURL } = req.params;
+  // console.log(shortURL);
+  try {
+    const urlDB = await Url.findOne({ shortURL: shortURL });
+    // console.log(urlDB.originL);
+    res.redirect(urlDB.origin);
+  } catch (error) {
+    console.log(error);
+    res.send("Algo falló 😥!");
+  }
+};
+
+module.exports = {
+  leerUrls,
+  agregarUrl,
+  eliminarUrl,
+  editarUrl,
+  editarUrlForm,
+  redirectShort,
+};
