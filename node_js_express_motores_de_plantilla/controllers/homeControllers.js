@@ -45,7 +45,7 @@ const editarUrl = async (req, res) => {
     await Url.findByIdAndUpdate(id, { origin: origin });
     res.redirect("/");
   } catch (error) {
-    console.log(erro);
+    console.log(error);
     res.send("Algo falló 😥!");
   }
 };
@@ -66,9 +66,14 @@ const redirectShort = async (req, res) => {
   const { shortURL } = req.params;
   // console.log(shortURL);
   try {
-    const urlDB = await Url.findOne({ shortURL: shortURL });
-    // console.log(urlDB.originL);
-    res.redirect(urlDB.origin);
+    const url = await Url.findOne({ shortURL: shortURL });
+    // console.log(url);
+    // res.redirect(url.origin);
+    if (!url?.origin) {
+      res.sendStatus(404);
+    } else {
+      res.redirect(url.origin);
+    }
   } catch (error) {
     console.log(error);
     res.send("Algo falló 😥!");

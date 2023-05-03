@@ -1,0 +1,33 @@
+<h1 class="text-center text-primary my-5">Registro de usiarios nuevos</h1>
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <form action="/auth/register" method="post">
+      <input
+        type="text"
+        class="form-control mb-2"
+        name="usuario"
+        placeholder="Ingrese tu nombre"
+      />
+      <input
+        type="email"
+        class="form-control mb-2"
+        name="email"
+        placeholder="Ingrese tu email"
+      />
+      <input
+        type="password"
+        class="form-control mb-2"
+        name="password"
+        placeholder="Ingrese tu password"
+      />
+      <input
+        type="password"
+        class="form-control mb-2"
+        name="repassword"
+        placeholder="Repita tu password"
+      />
+      <button class="btn btn-primary" type="submit">Registrar Usuario</button>
+    </form>
+  </div>
+</div>
