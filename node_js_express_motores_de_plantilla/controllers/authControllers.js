@@ -1,4 +1,6 @@
+const { nanoid } = require("nanoid");
 const User = require("../models/User");
+// const bcrypt = require("bcryptjs");
 
 const loginForm = (req, res) => {
   res.render("login");
@@ -25,15 +27,18 @@ const registerUser = async (req, res) => {
     let user = await User.findOne({ email: email });
     // res.json(user); // retorno null
     // console.log(user);
-    if (user) throw new error("Ya existe este usuario");
+    if (user) throw new Error("Ya existe este usuario");
 
-    user = new User({ userName, email, password });
+    user = new User({ userName, email, password, tokenConfirm: nanoid() });
     // console.log(user);
     await user.save();
+    //teste de uso do bcryptjs
+    // const salt = await bcrypt.genSalt(10);
+    // console.log(await bcrypt.hash(user.password, salt)); //mistura a senha com o salt
     res.json(user);
   } catch (error) {
     // console.log(error);
-    res.json({ error: "Ocorreu un error al guardar el usuario" });
+    res.json({ error: error.message });
   }
 };
 
