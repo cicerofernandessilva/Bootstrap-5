@@ -45,4 +45,8 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+userSchema.methods.comparePassword = async function (canditePassword) {
+  return await bcrypt.compare(canditePassword, this.password);
+};
+
 module.exports = moogoose.model("User", userSchema);
