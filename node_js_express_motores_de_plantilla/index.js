@@ -1,6 +1,27 @@
 const express = require("express");
+const session = require("express-session");
 const { create } = require("express-handlebars");
 const app = express();
+
+app.use(
+  session({
+    secret: "keyboard fox",
+    resave: false,
+    saveUninitialized: true,
+    name: "secret-fox",
+  })
+);
+
+//probar funcionamento
+// app.get("/ruta-protegida", (req, res) => {
+//   res.json(req.session.usuario || "Sin sesion de usuario!");
+// });
+
+// app.get("/crear-session", (req, res) => {
+//   req.session.usuario = "cicero";
+//   res.redirect("/ruta-protegida");
+// });
+
 const hbs = create({
   extname: "hbs",
   partialsDir: ["views/components"],
