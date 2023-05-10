@@ -21,6 +21,10 @@ app.use(
 //   req.session.usuario = "cicero";
 //   res.redirect("/ruta-protegida");
 // });
+// app.get("/destruir-session", (req, res) => {
+//   req.session.destroy();
+//   res.redirect("/ruta-protegida");
+// });
 
 const hbs = create({
   extname: "hbs",
