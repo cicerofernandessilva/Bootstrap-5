@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const flash = require("connect-flash");
 const { create } = require("express-handlebars");
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(
     name: "secret-fox",
   })
 );
+
+app.use(flash());
 
 //probar funcionamento
 // app.get("/ruta-protegida", (req, res) => {

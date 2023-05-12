@@ -4,7 +4,7 @@ const { nanoid } = require("nanoid");
 // const bcrypt = require("bcryptjs");
 
 const loginForm = (req, res) => {
-  res.render("login");
+  res.render("login", { mensajes: req.flash().mensajes });
   //   try {
   //     res.render("login");
   //   } catch (error) {
@@ -12,7 +12,7 @@ const loginForm = (req, res) => {
   //   }
 };
 const registerForm = (req, res) => {
-  res.render("register");
+  res.render("register", { mensajes: req.flash().mensajes });
   //   try {
   //     res.render("register");
   //   } catch (error) {
@@ -25,7 +25,9 @@ const registerUser = async (req, res) => {
   // res.json(req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.json(errors);
+    // return res.json(errors);
+    req.flash("mensajes", errors.array());
+    return res.redirect("/auth/register");
   }
   const { userName, email, password } = req.body;
   try {
@@ -44,7 +46,9 @@ const registerUser = async (req, res) => {
     res.redirect("/auth/login");
   } catch (error) {
     // console.log(error);
-    res.json({ error: error.message });
+    // res.json({ error: error.message });
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/auth/register");
   }
 };
 
@@ -69,7 +73,8 @@ const confirmC = async (req, res) => {
 const loginUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.json(errors);
+    req.flash("mensajes", errors.array());
+    return res.redirect("/auth/login");
   }
   const { email, password } = req.body;
   try {
@@ -79,12 +84,14 @@ const loginUser = async (req, res) => {
     if (!user.cuentaConfirmada)
       throw new Error("Falta confirmar la cuenta de este usuario!");
 
-    if (await user.comparePassword(password))
+    if (!(await user.comparePassword(password)))
       throw new Error("La contrasena no esta correta!");
 
     res.redirect("/");
   } catch (error) {
-    res.json({ error: error.message });
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/auth/login");
+    // res.json({ error: error.message });
   }
 };
 
