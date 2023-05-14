@@ -43,6 +43,9 @@ const registerUser = async (req, res) => {
     // const salt = await bcrypt.genSalt(10);
     // console.log(await bcrypt.hash(user.password, salt)); //mistura a senha com o salt
     // res.json(user);
+    req.flash("mensajes", [
+      { msg: "Revisa tu correo eletronico y valida la cuanta" },
+    ]);
     res.redirect("/auth/login");
   } catch (error) {
     // console.log(error);
@@ -64,9 +67,14 @@ const confirmC = async (req, res) => {
     user.tokenConfirm = null;
     await user.save();
 
+    req.flash("mensajes", [
+      { msg: "Cuenta verificada, puedes iniciar sesion!" },
+    ]);
     res.redirect("/auth/login");
   } catch (error) {
-    res.json({ error: error.message });
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/auth/login");
+    // res.json({ error: error.message });
   }
 };
 
@@ -85,7 +93,14 @@ const loginUser = async (req, res) => {
       throw new Error("Falta confirmar la cuenta de este usuario!");
 
     if (!(await user.comparePassword(password)))
-      throw new Error("La contrasena no esta correta!");
+      // throw new Error("La contrasena no esta correta!");
+      throw new Error(
+        `Base de datos ${
+          user.password
+        }, senha digitada ${password}, teste ${!(await user.comparePassword(
+          password
+        ))}`
+      );
 
     res.redirect("/");
   } catch (error) {

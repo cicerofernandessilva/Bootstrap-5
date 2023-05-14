@@ -8,6 +8,7 @@ const userSchema = new Schema({
     type: String,
     lowercase: true,
     require: true,
+    index: { unique: true },
   },
   email: {
     type: String,
@@ -18,7 +19,6 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    lowercase: true,
     require: true,
   },
   tokenConfirm: {
@@ -35,18 +35,19 @@ userSchema.pre("save", async function (next) {
   const user = this;
   if (!user.isModified("password")) return next(); // se o password já existe ele não é modificado
   try {
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(2);
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
-    next();
   } catch (error) {
     console.log(error);
-    next();
+    throw new Error("Error al codificar la contraseña");
   }
 });
 
-userSchema.methods.comparePassword = async function (canditePassword) {
-  return await bcrypt.compare(canditePassword, this.password);
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  // console.log(candidatePassword);
+  // console.log(this.password);
+  return await bcrypt.compare(this.password, candidatePassword);
 };
 
 module.exports = moogoose.model("User", userSchema);
