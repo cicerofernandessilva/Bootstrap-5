@@ -8,9 +8,10 @@ const {
   redirectShort,
 } = require("../controllers/homeControllers");
 const { urlValidar } = require("../middlewares/urlValidar");
+const validarUser = require("../middlewares/validarUser");
 const router = express.Router();
 
-router.get("/", leerUrls);
+router.get("/", validarUser, leerUrls);
 router.post("/", urlValidar, agregarUrl);
 router.get("/eliminar/:id", eliminarUrl);
 router.get("/editar/:id", editarUrlForm);

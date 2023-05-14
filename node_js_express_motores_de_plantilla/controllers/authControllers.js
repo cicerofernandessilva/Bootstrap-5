@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const { validationResult } = require("express-validator");
 const { nanoid } = require("nanoid");
-// const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 
 const loginForm = (req, res) => {
   res.render("login", { mensajes: req.flash().mensajes });
@@ -92,22 +92,28 @@ const loginUser = async (req, res) => {
     if (!user.cuentaConfirmada)
       throw new Error("Falta confirmar la cuenta de este usuario!");
 
-    if (!(await user.comparePassword(password)))
-      // throw new Error("La contrasena no esta correta!");
-      throw new Error(
-        `Base de datos ${
-          user.password
-        }, senha digitada ${password}, teste ${!(await user.comparePassword(
-          password
-        ))}`
-      );
+    if (!bcrypt.compareSync(password, user.password))
+      throw new Error("La contrasena no esta correta!");
 
-    res.redirect("/");
+    req.login(user, function (err) {
+      if (err) throw new Error("Error al crear sesion!");
+      res.redirect("/");
+    });
+    // res.redirect("/");
   } catch (error) {
     req.flash("mensajes", [{ msg: error.message }]);
     return res.redirect("/auth/login");
     // res.json({ error: error.message });
   }
+};
+
+const cerrarSesion = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+  });
+  return res.redirect("/auth/login");
 };
 
 module.exports = {
@@ -116,4 +122,5 @@ module.exports = {
   registerUser,
   confirmC,
   loginUser,
+  cerrarSesion,
 };

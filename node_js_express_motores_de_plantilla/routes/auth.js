@@ -6,6 +6,7 @@ const {
   registerUser,
   confirmC,
   loginUser,
+  cerrarSesion,
 } = require("../controllers/authControllers");
 const router = express.Router();
 
@@ -43,5 +44,7 @@ router.post(
   ],
   loginUser
 );
+
+router.get("/logout", cerrarSesion);
 
 module.exports = router;
