@@ -12,10 +12,10 @@ const validarUser = require("../middlewares/validarUser");
 const router = express.Router();
 
 router.get("/", validarUser, leerUrls);
-router.post("/", urlValidar, agregarUrl);
-router.get("/eliminar/:id", eliminarUrl);
-router.get("/editar/:id", editarUrlForm);
-router.post("/editar/:id", urlValidar, editarUrl);
+router.post("/", validarUser, urlValidar, agregarUrl);
+router.get("/eliminar/:id", validarUser, eliminarUrl);
+router.get("/editar/:id", validarUser, editarUrlForm);
+router.post("/editar/:id", validarUser, urlValidar, editarUrl);
 router.get("/:shortURL", redirectShort);
 
 module.exports = router;

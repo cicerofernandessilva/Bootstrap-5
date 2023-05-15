@@ -4,7 +4,10 @@ const { nanoid } = require("nanoid");
 const bcrypt = require("bcryptjs");
 
 const loginForm = (req, res) => {
-  res.render("login", { mensajes: req.flash().mensajes });
+  res.render(
+    "login"
+    // { mensajes: req.flash().mensajes }
+  );
   //   try {
   //     res.render("login");
   //   } catch (error) {
@@ -12,7 +15,10 @@ const loginForm = (req, res) => {
   //   }
 };
 const registerForm = (req, res) => {
-  res.render("register", { mensajes: req.flash().mensajes });
+  res.render("register", {
+    // mensajes: req.flash().mensajes,
+    csrfToken: req.csrfToken,
+  });
   //   try {
   //     res.render("register");
   //   } catch (error) {
