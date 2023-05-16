@@ -3,11 +3,13 @@ const { nanoid } = require("nanoid");
 
 const leerUrls = async (req, res) => {
   try {
-    const urls = await Url.find().lean();
+    const urls = await Url.find({ user: req.user.id }).lean();
     res.render("home", { urls: urls });
   } catch (error) {
-    console.log(error);
-    res.send("Algo falló😥!");
+    // console.log(error);
+    // res.send("Algo falló😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 
@@ -16,25 +18,41 @@ const agregarUrl = async (req, res) => {
   const { origin } = req.body;
   try {
     // const url = new Url({ origin: "estático" });
-    const url = new Url({ origin: origin, shortURL: nanoid(7) });
+    const url = new Url({
+      origin: origin,
+      shortURL: nanoid(7),
+      user: req.user.id,
+    });
     // console.log(url);
     // res.send(`Agregado🔥! ${url}`);
     await url.save();
+    req.flash("mensajes", [{ msg: "Url agregada con exito! 😍😁🔥" }]);
     res.redirect("/");
   } catch (error) {
-    console.log(error);
-    res.send("Error, algo falló😥!");
+    // console.log(error);
+    // res.send("Error, algo falló😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 
 const eliminarUrl = async (req, res) => {
   const { id } = req.params;
   try {
-    await Url.findByIdAndDelete(id);
+    // await Url.findByIdAndDelete(id);
+    const url = await Url.findById(id);
+    if (!url.user.equals(req.user.id)) {
+      throw new Error("No es tu url payaso 🤡");
+    }
+    // await url.remove();
+    await url.deleteOne();
+    req.flash("mensajes", [{ msg: "Url Eliminada! 🗑 🗑" }]);
     res.redirect("/");
   } catch (error) {
-    console.log(erro);
-    res.send("Algo falló 😥!");
+    // console.log(erro);
+    // res.send("Algo falló 😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 
@@ -42,11 +60,19 @@ const editarUrl = async (req, res) => {
   const { origin } = req.body;
   const { id } = req.params;
   try {
-    await Url.findByIdAndUpdate(id, { origin: origin });
+    // await Url.findByIdAndUpdate(id, { origin: origin });
+    const url = await Url.findById(id);
+    if (!url.user.equals(req.user.id)) {
+      throw new Error("No es tu url payaso 🤡");
+    }
+    await url.updateOne({ origin });
+    req.flash("mensajes", [{ msg: "Url Editada! 👏👏" }]);
     res.redirect("/");
   } catch (error) {
-    console.log(error);
-    res.send("Algo falló 😥!");
+    // console.log(error);
+    // res.send("Algo falló 😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 
@@ -54,11 +80,16 @@ const editarUrlForm = async (req, res) => {
   const { id } = req.params;
   try {
     const url = await Url.findById(id).lean();
-    console.log(url);
+    if (!url.user.equals(req.user.id)) {
+      throw new Error("No es tu url payaso 🤡");
+    }
+    // console.log(url);
     res.render("home", { url });
   } catch (error) {
-    console.log(erro);
-    res.send("Algo falló 😥!");
+    // console.log(erro);
+    // res.send("Algo falló 😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 
@@ -75,8 +106,10 @@ const redirectShort = async (req, res) => {
       res.redirect(url.origin);
     }
   } catch (error) {
-    console.log(error);
-    res.send("Algo falló 😥!");
+    // console.log(error);
+    // res.send("Algo falló 😥!");
+    req.flash("mensajes", [{ msg: error.message }]);
+    return res.redirect("/");
   }
 };
 

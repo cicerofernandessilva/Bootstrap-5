@@ -15,6 +15,11 @@ const urlSchema = new Schema({
     require: true,
     // default: nanoid(5), inserido diretamento no homecontrollers
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    require: true,
+  },
 });
 
 const Url = mongoose.model("Url", urlSchema);
