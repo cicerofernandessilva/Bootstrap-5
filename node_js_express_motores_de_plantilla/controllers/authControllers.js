@@ -2,6 +2,8 @@ const User = require("../models/User");
 const { validationResult } = require("express-validator");
 const { nanoid } = require("nanoid");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const loginForm = (req, res) => {
   res.render(
@@ -49,6 +51,21 @@ const registerUser = async (req, res) => {
     // const salt = await bcrypt.genSalt(10);
     // console.log(await bcrypt.hash(user.password, salt)); //mistura a senha com o salt
     // res.json(user);
+    //mailtrap
+    const transport = nodemailer.createTransport({
+      host: "sandbox.smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: process.env.userEmail,
+        pass: process.env.passEmail,
+      },
+    });
+    await transport.sendMail({
+      from: '"Fred Foo 👻" <foo@example.com>', // sender address
+      to: user.email, // list of receivers
+      subject: "Verifica tu cuenta de correo", // Subject line
+      html: `<a href="http://localhost:5000/auth//confirm/${user.tokenConfirm}"> Verifica tu cuenta aqui</a>`, // html body
+    });
     req.flash("mensajes", [
       { msg: "Revisa tu correo eletronico y valida la cuanta" },
     ]);

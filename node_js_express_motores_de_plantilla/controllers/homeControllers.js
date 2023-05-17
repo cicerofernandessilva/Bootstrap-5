@@ -108,7 +108,7 @@ const redirectShort = async (req, res) => {
   } catch (error) {
     // console.log(error);
     // res.send("Algo falló 😥!");
-    req.flash("mensajes", [{ msg: error.message }]);
+    req.flash("mensajes", [{ msg: "No existe esta URL 😑😑😑" }]);
     return res.redirect("/");
   }
 };
