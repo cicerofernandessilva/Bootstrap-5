@@ -7,7 +7,10 @@ const {
   editarUrlForm,
   redirectShort,
 } = require("../controllers/homeControllers");
-const { formPerfil } = require("../controllers/perfilControllers");
+const {
+  formPerfil,
+  editarFotoPerfil,
+} = require("../controllers/perfilControllers");
 const { urlValidar } = require("../middlewares/urlValidar");
 const validarUser = require("../middlewares/validarUser");
 const router = express.Router();
@@ -19,6 +22,7 @@ router.get("/editar/:id", validarUser, editarUrlForm);
 router.post("/editar/:id", validarUser, urlValidar, editarUrl);
 
 router.get("/perfil", formPerfil);
+router.post("/perfil", editarFotoPerfil);
 
 router.get("/:shortURL", redirectShort);
 

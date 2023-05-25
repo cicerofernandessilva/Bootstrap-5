@@ -1,8 +1,22 @@
 <h1 class="text-center text-primary">Nombre del usuario</h1>
 <p class="text-center lead">Edite tu perfil</p>
-<div class="my-2 text-center">
+<div class="my-5 text-center">
   <picture>
-    <img src="/img/perfiles/perfil.jpg" alt="beira do lago com pedras" />
-    <img src="https://picsum.photos/200" alt="aleatorio" />
+    <img
+      src="/img/perfiles/perfil.jpg"
+      alt="beira do lago com pedras"
+      class="rounded-circle"
+    />
+    <img
+      src="https://picsum.photos/200"
+      alt="aleatorio"
+      class="rounded-circle"
+    />
   </picture>
 </div>
+
+<form action="/perfil" method="post" enctype="multipart/form-data">
+  <label for="formFileSm" class="form-label">Modifica tu imagen de perfil</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file" />
+  <button class="btn btn-dark w-100 my-2">Cambiar imagen de perfil</button>
+</form>
