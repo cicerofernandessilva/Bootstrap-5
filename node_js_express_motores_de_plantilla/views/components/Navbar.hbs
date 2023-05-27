@@ -1,6 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/">Cicero</a>
+    {{#if user.userName}}
+      <a class="navbar-brand text-uppercase" href="/">{{user.userName}}</a>
+
+    {{else}}
+      <a class="navbar-brand" href="/"></a>
+
+    {{/if}}
     <button
       class="navbar-toggler"
       type="button"

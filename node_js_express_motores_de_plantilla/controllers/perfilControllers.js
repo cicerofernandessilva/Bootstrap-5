@@ -1,7 +1,17 @@
 const formidable = require("formidable");
+const path = require("path");
+const fs = require("fs");
+const jimp = require("jimp");
+const User = require("../models/User");
+module.exports.formPerfil = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
 
-module.exports.formPerfil = (req, res) => {
-  res.render("perfil");
+    return res.render("perfil", { user: req.user, imagen: user.imagen });
+  } catch (error) {
+    req.flash("mensajes", [{ msg: "Error al leer el usuario" }]);
+    return res.redirect("/auth/login");
+  }
 };
 
 module.exports.editarFotoPerfil = (req, res) => {
@@ -32,11 +42,27 @@ module.exports.editarFotoPerfil = (req, res) => {
         throw new Error("Por favor agrega uma imagen menor que 5mb");
       }
 
+      const extension = file.mimetype.split("/")[1];
+      const dirFile = path.join(
+        __dirname,
+        `../public/img/perfiles/${req.user.id}.${extension}`
+      );
+      // console.log(dirFile); texte
+      fs.renameSync(file.filepath, dirFile);
+
+      const img = await jimp.read(dirFile);
+      img.resize(200, 200).quality(100).writeAsync(dirFile);
+
+      const user = await User.findById(req.user.id);
+      user.imagen = `${req.user.id}.${extension}`;
+      await user.save();
       req.flash("mensajes", [{ msg: "Ya se subiu la imagen😎!" }]);
-      return res.redirect("/perfil");
+      // return res.redirect("/perfil");
     } catch (error) {
       req.flash("mensajes", [{ msg: error.message }]);
-      return res.redirect("/perfil");
+      // return res.redirect("/perfil");
+    } finally {
+      return res.redirect("/perfil"); // sempre vai direcionar ao /perfil
     }
   });
 };
