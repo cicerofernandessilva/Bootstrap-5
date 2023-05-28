@@ -5,14 +5,31 @@ const passport = require("passport");
 const { create } = require("express-handlebars");
 const csrf = require("csurf");
 const User = require("./models/User");
+const MongoStore = require("connect-mongo");
+const clientDB = require("./database/db");
+const mongoSanitize = require("express-mongo-sanitize");
+const cors = require("cors");
+
 const app = express();
+
+const corsOptions = {
+  credentials: true,
+  origin: process.env.pathHeroku || "*",
+  methods: ["GET", "POST"],
+};
 
 app.use(
   session({
-    secret: "keyboard fox",
+    secret: process.env.secretSession,
     resave: false,
     saveUninitialized: true,
     name: "secret-fox",
+    store: MongoStore.create({
+      //não se perde los datos de sesion al se reiniciar el servidor
+      clientPromise: clientDB, //dados do cliente no db
+      dbName: process.env.dbName,
+    }),
+    cookie: { secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 },
   })
 );
 
@@ -75,6 +92,8 @@ app.set("views", "./views");
 app.use(express.urlencoded({ extended: true })); //leer body enviado via post
 
 app.use(csrf());
+app.use(mongoSanitize());
+
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken;
   res.locals.mensajes = req.flash("mensajes");
@@ -85,7 +104,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/", require("./routes/home"));
 app.use("/auth", require("./routes/auth"));
 require("dotenv").config();
-require("./database/db");
+// require("./database/db"); creado clientDB
 
 const PORT = process.env.PORT || 5000;
 

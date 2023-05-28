@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 //chamar database
-mongoose
+const clientDB = mongoose
   .connect(process.env.URI)
-  .then(() => console.log("DB conectado 🔥!"))
+  .then((m) => {
+    console.log("DB conectado 🔥!");
+    return m.connection.getClient();
+  })
   .catch((e) => console.log("DB falló conexion ! 😥" + e));
+
+module.exports = clientDB;
