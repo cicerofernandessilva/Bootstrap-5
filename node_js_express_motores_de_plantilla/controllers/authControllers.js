@@ -65,8 +65,8 @@ const registerUser = async (req, res) => {
       to: user.email, // list of receivers
       subject: "Verifica tu cuenta de correo", // Subject line
       html: `<a href="${
-        process.env.pathHeroku || "http://localhost:5000"
-      }/auth//confirm/${user.tokenConfirm}"> Verifica tu cuenta aqui</a>`, // html body
+        process.env.pathHeroku || "http://localhost:5000/"
+      }auth/confirm/${user.tokenConfirm}"> Verifica tu cuenta aqui</a>`, // html body
     });
     req.flash("mensajes", [
       { msg: "Revisa tu correo eletronico y valida la cuanta" },
