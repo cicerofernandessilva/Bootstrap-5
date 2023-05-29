@@ -5,6 +5,7 @@ const chat = document.querySelector("#chat");
 const form = document.querySelector("#form");
 const enviar = document.querySelector("#enviar");
 const msgInicio = document.querySelector("#msgInicio");
+const template = document.querySelector("#template");
 
 /// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
@@ -17,7 +18,14 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  onSnapshot,
+  orderBy,
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -35,6 +43,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 // signInWithPopup(auth, provider)
 //   .then((result) => {
@@ -63,6 +72,8 @@ const hide = (elemento) => {
   elemento.classList.add("d-none");
 };
 
+let unsubscribe;
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Existe el usuario!😍", user);
@@ -72,6 +83,33 @@ onAuthStateChanged(auth, (user) => {
     show(chat);
     hide(ingresar);
     hide(msgInicio);
+    const q = query(collection(db, "chat"), orderBy("fecha"));
+    chat.innerHTML = "";
+    unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          console.log("Nova mensagens: ", change.doc.data());
+          const clone = template.content.cloneNode(true);
+          console.log(clone.querySelector("div"));
+          clone.querySelector("span").textContent = change.doc.data().msg;
+          if (user.uid === change.doc.data().uid) {
+            clone.querySelector("span").classList.add("bg-success");
+            clone.querySelector("div").classList.add("text-start");
+          } else {
+            clone.querySelector("span").classList.add("bg-secondary");
+            clone.querySelector("div").classList.add("text-end");
+          }
+          chat.append(clone);
+        }
+        //   if (change.type === "modified") {
+        //     console.log("Modified city: ", change.doc.data());
+        //   }
+        //   if (change.type === "removed") {
+        //     console.log("Removed city: ", change.doc.data());
+        //   }
+        chat.scrollTop = chat.scrollHeight;
+      });
+    });
   } else {
     console.log("No existe el usuario😑");
     show(ingresar);
@@ -79,6 +117,10 @@ onAuthStateChanged(auth, (user) => {
     hide(salir);
     hide(form);
     hide(chat);
+
+    if (unsubscribe) {
+      unsubscribe();
+    }
   }
 });
 
@@ -95,4 +137,28 @@ ingresar.addEventListener("click", async () => {
 salir.addEventListener("click", async () => {
   signOut(auth);
   console.log("El usuario salio de la sesion😥");
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!form.msg.value.trim()) {
+    form.msg.value = "";
+    form.msg.focus();
+    return console.log("Por favor escribe una mensaje");
+  }
+  try {
+    enviar.disabled = true;
+    console.log(form.msg.value);
+    console.log("Mensaje enviada😁");
+    await addDoc(collection(db, "chat"), {
+      msg: form.msg.value.trim(),
+      uid: auth.currentUser.uid,
+      fecha: new Date(),
+    });
+    form.msg.value = "";
+  } catch (error) {
+    console.log(error, "No se envio la mensaje😥");
+  } finally {
+    enviar.disabled = false;
+  }
 });
